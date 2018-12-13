@@ -1,8 +1,6 @@
-
-
 <body>
 
-  <?php require_once "vista/menu.php";?>
+  <?php require_once "vista/menu.php"; ?>
 
 
   <div class="main-panel">
@@ -36,15 +34,15 @@
               <div class="row">
                 <div class="col-md-6">
                   Nacionalidad <span class="required">*</span><br>
-                  <input class="nacionalidad_paciente" type="radio" name="nacionalidad_paciente"  id="V" value="Venezolano">
+                  <input class="nacionalidad_paciente" type="radio" name="nacionalidad_paciente"  id="V" value="Venezolano" checked>
                   <label for="V">Venezolano</label>
-                  <input class="nacionalidad_paciente" type="radio"  name="nacionalidad_paciente" id="E" value="Extranjero" />
+                  <input class="nacionalidad_paciente" type="radio"  name="nacionalidad_paciente" id="E" value="Extranjero"  />
                   <label for="E">Extranjero</label>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group label-floating has-success">
                     <label class="bmd-label-floating">N° de cédula <span class="required">*</span></label>
-                    <input type="text" minlength="6" maxlength="8" name="cedula" id="cedula" class="form-control" >
+                    <input type="text"  name="cedula" id="cedula" class="form-control" >
                   </div>
                 </div>
               </div>
@@ -80,16 +78,16 @@
 
               <div class="form-row">
                 <div class=" col-lg-4 col-md-4 col-sm-4">
-                  <select class="form-control" type="" id="estado" name="estado" data-style="btn-success">
+                  <select class="form-control"  id="estado" name="estado" data-style="btn-success">
                     <option disabled selected>Estado</option>
-                    <?php foreach ($datosEstados as $estado => $fila) {?>
+                    <?php foreach ($datosEstados as $estado => $fila) { ?>
                       <option value="<?php echo $fila->id_estado ?>"><?php echo $fila->nombre ?></option>
-                    <?php }?>
+                    <?php } ?>
                   </select>
                 </div>
 
                 <div class="col-lg-4 col-md-4 col-sm-4">
-                  <select class="form-control" type="" id="cbx_municipio" name="municipio" data-style="btn btn-success btn-round">
+                  <select class="form-control"  id="cbx_municipio" name="municipio" data-style="btn btn-success btn-round">
                     <option disabled selected>Municipio</option>
                   </select>
                 </div>
@@ -105,7 +103,7 @@
 
               <div class="form-row">
                 <div class="form-group label-floating has-success col-md-4">
-                  <label for="telefonomovil" type="selectpicker" class="bmd-label-floating">Teléfono</label>
+                  <label for="telefonomovil"  class="bmd-label-floating">Teléfono</label>
                   <input type="tel" maxlength="11" class="form-control" name="telefono_paciente" id="telefono_paciente" >
                 </div>
 
@@ -121,7 +119,7 @@
 
               <div class="form-row">
                 <div class="form-group has-success col-lg-6 col-md-6 col-sm-6">
-                  <select class="form-control" type="" name="estadocivil_paciente" id="estadocivil_paciente" data-style="btn btn-success btn-round">
+                  <select class="form-control" name="estadocivil_paciente" id="estadocivil_paciente" data-style="btn btn-success btn-round">
                     <option disabled selected>Estado Civil</option>
                     <option value="Soltero(a)">Soltero(a)</option>
                     <option value="Casado(a)">Casado(a)</option>
@@ -148,7 +146,7 @@
               <div class="form-row">
                 <div class="col-xs-12">
                   Sexo<span class="required">*</span>:<br>
-                  <input class="genero" name="sexo_paciente" value="Masculino" type="radio" data-toggle="collapse" data-target="#collapseOne" checked/>
+                  <input class="genero" name="sexo_paciente" value="Masculino" type="radio" data-toggle="collapse" data-target="#collapsetwo" checked/>
                   <label for="masculino">Masculino:</label>
                   <input class="genero" name="sexo_paciente" value="Femenino" type="radio" data-toggle="collapse" data-target="#collapseOne"/>
                   <label for="femenino">Femenino:</label>
@@ -218,155 +216,133 @@
     </div>
     <!--Fin Modal Registro PAciente  -->
 
-    <?php require_once "vista/pie.php";?>
+    <?php require_once "vista/pie.php"; ?>
+
+    <script >
+
+      $(document).ready(function () {
 
 
-    <!-- data-validation="custom" data-validation-regexp="^([a-z][A-Z]+)$" data-validation-error-msg="Ingrese sólo letras"  -->
+        var $input = $('.datepicker').pickadate({
 
-  </body>
+          selectMonths: true, // Creates a dropdown to control month
+          selectYears: 120,
+          //max: new Date(2003,12,31),
+          //max: new Date(), //Muestra todas las fechas pasadas y futuras
+          min: false, // new Date() deshabilita las fechas pasadas y solo muestra de la actual hasta hoy
+          today: 'Hoy',
+          clear: 'Limpiar',
+          close: 'Seleccionar',
+          format: 'yyyy-mm-dd',
+          monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+          monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+          weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+          weekdaysShort: ['Dom', 'Lun', 'Mar', 'Miér', 'Jue', 'Vie', 'Sáb'],
+          weekdaysLetter: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+          showMonthsShort: undefined,
+          showWeekdaysFull: undefined,
+          labelMonthNext: 'Mes siguiente',
+          labelMonthPrev: 'Mes anterior',
+          labelMonthSelect: 'Seleccione el mes',
+          labelYearSelect: 'Seleccione el año',
+          min: new Date(1910, 1, 1),
+          max: new Date(2050, 12, 31)
 
-  </html>
-
-
-  <script type="text/javascript">
-
-    $(document).ready(function() {
-
-
-      var $input = $( '.datepicker' ).pickadate({
-
-        selectMonths: true, // Creates a dropdown to control month
-        selectYears: 120,
-        //max: new Date(2003,12,31),
-    //max: new Date(), //Muestra todas las fechas pasadas y futuras
-    min: false, // new Date() deshabilita las fechas pasadas y solo muestra de la actual hasta hoy
-    today: 'Hoy',
-    clear: 'Limpiar',
-    close: 'Seleccionar',
-    format: 'yyyy-mm-dd',
-    monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-    monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-    weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-    weekdaysShort: ['Dom', 'Lun', 'Mar', 'Miér', 'Jue', 'Vie', 'Sáb'],
-    weekdaysLetter: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-    showMonthsShort: undefined,
-    showWeekdaysFull: undefined,
-    labelMonthNext: 'Mes siguiente',
-    labelMonthPrev: 'Mes anterior',
-    labelMonthSelect: 'Seleccione el mes',
-    labelYearSelect: 'Seleccione el año',
-    min: new Date(1910,1,1),
-    max: new Date(2050,12,31)
-
-  });
-
-      $( "#cedula" ).keyup(function(e) {
-
-        cedula=$("#cedula").val();
-
-        $.ajax({
-          type: "get",
-          url: "?accion=buscarCedula&cedula="+cedula,
-          data: cedula,
-          success: function(data) {
-
-
-            if (data==1) {
-             alert("Cedula Existe");
-             $('#cedula').val('');
-             $('#cedula').focus();
-           }
-         }
-       });
-      });
-
-      $("#registropac").modal("show");
-
-      $("#estado").on('change', function () {
-        $("#estado option:selected").each(function () {
-
-          elegido=$(this).val();
-
-          $.get("?accion=municipio",
-            { elegido: elegido },
-            function(data){
-              console.log(data);
-              $("#cbx_municipio").html(data);
-
-            });
         });
-      });
 
-      $("#cbx_municipio").on('change', function () {
+        $("#cedula").keyup(function (e) {
 
-        $("#cbx_municipio option:selected").each(function () {
+          cedula = $("#cedula").val();
 
-          elegido=$(this).val();
+          $.ajax({
+            type: "get",
+            url: "?accion=buscarCedula&cedula=" + cedula,
+            data: cedula,
+            success: function (data) {
+
+
+              if (data == 1) {
+                alert("Cedula Existe");
+                $('#cedula').val('');
+                $('#cedula').focus();
+              }
+            }
+          });
+        });
+
+        $("#registropac").modal("show");
+
+        $("#estado").on('change', function () {
+          $("#estado option:selected").each(function () {
+
+            elegido = $(this).val();
+
+            $.get("?accion=municipio",
+                    {elegido: elegido},
+                    function (data) {
+                      console.log(data);
+                      $("#cbx_municipio").html(data);
+
+                    });
+          });
+        });
+
+        $("#cbx_municipio").on('change', function () {
+
+          $("#cbx_municipio option:selected").each(function () {
+
+            elegido = $(this).val();
             //alert(elegido);
             $.get("?accion=parroquia",
-              { elegido: elegido },
-              function(data){
-                console.log(data);
+                    {elegido: elegido},
+                    function (data) {
+                      console.log(data);
 
-                $("#cbx_parroquia").html(data);
+                      $("#cbx_parroquia").html(data);
 
-              });
+                    });
           });
+        });
+
+
+        $("#form_registro").on("submit", function (event) {
+
+          event.preventDefault();
+          //event.stopPropagation();
+
+          var dataString = $('#form_registro').serialize();
+          //alert('Datos serializados: '+dataString);
+
+          $.ajax({
+            type: "POST",
+            url: "",
+            data: dataString,
+            success: function (data) {
+
+
+              alert("¡Paciente registrado exitosamente!");
+
+              window.location = '?accion=consultarPaciente';
+
+            }
+          });
+        });
+
+
       });
 
 
-      $( "#form_registro" ).on( "submit", function( event ) {
-
-        event.preventDefault();
-        //event.stopPropagation();
-
-        var dataString = $('#form_registro').serialize();
-        //alert('Datos serializados: '+dataString);
-
-        $.ajax({
-          type: "POST",
-          url: "",
-          data: dataString,
-          success: function(data) {
-
-
-           alert("¡Paciente registrado exitosamente!");
-
-           window.location='?accion=consultarPaciente';
-
-         }
-       });
-      });
 
 
 
 
-     /* $.validate({
-       borderColorOnError : '#FFF',
-       addValidClassOnAll : true,
-       validateOnBlur : true, // disable validation when input looses focus
-    errorMessagePosition : 'top',// Instead of 'inline' which is default
-    scrollToTopOnError : true // Set this property to true on longer forms
-
-  });*/
+    </script>
 
 
 
+</body>
 
-
-
-});
-
-
-
-
-
-
-</script>
-
-
-
-
+</html>
 
 
 
